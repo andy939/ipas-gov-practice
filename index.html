@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1d6fd6">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>iPAS／公務AI 考試練習</title>
+<style>
+:root{color-scheme:light;--bg:#f5f6f8;--ink:#1a1e24;--ink2:#374151;--ink3:#6b7280;--line:#e4e7eb;--accent:#1d6fd6;--accent-soft:#e8f1fc;--deep:#0a7f7f;--good-soft:#e6f6ec;--good:#17803d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.65}
+header{background:var(--accent);color:#fff;padding:18px 16px}
+header h1{margin:0;font-size:20px}header p{margin:4px 0 0;color:#e8f1fc;font-size:14px}
+.wrap{max-width:680px;margin:0 auto;padding:16px}
+.tool{display:block;background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:0 14px 14px 0;padding:14px 16px;margin-bottom:12px;text-decoration:none;color:inherit}
+.tool:hover{background:var(--accent-soft)}
+.tool h3{margin:0;font-size:17px}.tool p{margin:4px 0 0;font-size:14px;color:var(--ink2)}
+.tag{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:6px;background:var(--good-soft);color:var(--good);font-weight:600}
+h2{font-size:16px;margin:22px 0 8px}
+ul{margin:0;padding-left:20px;font-size:14.5px}li{margin-bottom:5px}
+.note{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--ink2);margin-top:14px}
+footer{margin:26px 0 10px;font-size:12.5px;color:var(--ink3)}
+</style></head><body>
+<header><h1>iPAS AI應用規劃師（中級）／公務AI 考試練習</h1><p>科目一、科目二、公務AI 共通核心能力認證｜模擬考、弱點加強、錯題本</p></header>
+<div class="wrap">
+<a class="tool" id="m" href="mobile.html"><h3>手機版 <span class="tag" id="rec"></span></h3><p>一次一題、大按鈕、可加到主畫面，第一次連線後沒網路也能練。</p></a>
+<a class="tool" href="desktop.html"><h3>桌機版</h3><p>完整功能：依真題比重抽題、依評鑑項目練習、程式入門、成績分析、Excel 匯出。</p></a>
+<h2>使用說明</h2>
+<ul>
+<li>模擬考：每回 50 題、iPAS 90 分鐘（公務AI 60 分鐘），交卷後可下載 3 份 Excel。</li>
+<li>練習模式：作答後立刻看解析，不計時；可依評鑑項目選題。</li>
+<li>弱點加強、錯題本：依你的作答紀錄自動挑題。</li>
+<li>進度存在這個瀏覽器裡（手機版和桌機版共用）；換裝置請到「成績」匯出備份。</li>
+</ul>
+<div class="note"><b>請注意：</b>中級／初級真題、公務AI 樣題取自官方公告試題與命題方向文件；「擴充題」「加強練習」是 AI 撰寫的練習題，部分正解選項偏長，請以真題成績為準。題目與解析僅供備考參考，實際以官方公告為準。</div>
+<footer>本網頁為個人備考工具，與經濟部 iPAS 或任何公務機關無關。</footer>
+</div>
+<script>
+(function(){var m=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)||innerWidth<700;
+document.getElementById('rec').textContent=m?'你的裝置建議用這個':'';
+if(!m){document.getElementById('rec').style.display='none'}})();
+</script></body></html>
