@@ -295,7 +295,7 @@ function submitExam(force){
  clearInterval(timerId);$('timer').classList.add('hide');
  const used=ex.practice?Math.floor((Date.now()-ex.t0)/1000):Math.min(ex.limit*60,Math.floor((Date.now()-ex.t0)/1000));
  let ok=0;const per={};
- Q.forEach(q=>{const p=ex.picks[q.id]||0,r=p===q.a;if(r)ok++;if(!ex.practice&&p)record(q.id,r);
+ Q.forEach(q=>{const p=ex.picks[q.id]||0,r=p===q.a;if(r)ok++;if(!ex.practice)record(q.id,r);
   const t=per[q.topic]||(per[q.topic]={ok:0,n:0});t.n++;if(r)t.ok++});
  const total=Q.length,score=Math.round(ok*1000/total)/10;
  ex.done=true;ex.res={ok,wrong:total-ok-miss,blank:miss,total,score,used,per};

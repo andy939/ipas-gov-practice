@@ -280,7 +280,7 @@ function submitExam(force){
  clearInterval(timerId);$('timer').classList.add('hide');wakeOff();sheetClose();
  const used=ex.practice?Math.floor((Date.now()-ex.t0)/1000):Math.min(ex.limit*60,Math.floor((Date.now()-ex.t0)/1000));
  let ok=0;const per={};
- Q.forEach(q=>{const p=ex.picks[q.id]||0,r=p===q.a;if(r)ok++;if(!ex.practice&&p)record(q.id,r);const t=per[q.topic]||(per[q.topic]={ok:0,n:0});t.n++;if(r)t.ok++});
+ Q.forEach(q=>{const p=ex.picks[q.id]||0,r=p===q.a;if(r)ok++;if(!ex.practice)record(q.id,r);const t=per[q.topic]||(per[q.topic]={ok:0,n:0});t.n++;if(r)t.ok++});
  const total=Q.length,score=Math.round(ok*1000/total)/10;
  ex.done=true;ex.res={ok,wrong:total-ok-miss,blank:miss,total,score,used,per};
  DB.hist.unshift({ts:Date.now(),subj:ex.subj,mode:ex.practice?(ex.tag||'練習'):(ex.tag||'模擬考'),score,ok,total,used});
