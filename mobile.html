@@ -151,13 +151,18 @@ function drawIds(s,pool,n,prefer,weighted,codeMode){
  const got=[],left=[];
  /* 科目二程式題比例：依各主題在中級真題的程式題占比抽（real＝照真題約 20%、more＝加倍多練、any＝不限） */
  const cm=s==='L22'?(codeMode||'real'):'any',isC=q=>q.kind==='code';
+ const nm=o=>String(o).replace(/[\s\d.,\[\](){}:;；，、'"\-+eE\/]|True|False|None|array|dtype|int64|float64/g,'').length<=4;
+ const isNumOut=q=>{const o=q.o||[];return o.filter(nm).length>=3||o.filter(x=>x.length<=30&&/\d/.test(x)&&!/[\u4e00-\u9fff]{4}/.test(x)).length>=3};
  const cfo=k=>{const o=bank[s].filter(q=>q.official&&q.level!=='初級'&&skey(q)===k);return o.length?o.filter(isC).length/o.length:0};
  keys.forEach(k=>{const gp=groups[k]||[];
   if(cm==='any'||!gp.length){const g=order(gp);got.push(...g.slice(0,quota[k]));left.push(...g.slice(quota[k]));return}
   const f=cm==='more'?Math.min(.9,cfo(k)*2):cfo(k),cq=Math.round(quota[k]*f);
-  const cs=order(gp.filter(isC)),ns=order(gp.filter(q=>!isC(q)));
+  const cs=gp.filter(isC),ns=order(gp.filter(q=>!isC(q)));
   const takeC=Math.min(cs.length,Math.max(cq,quota[k]-ns.length)),takeN=Math.min(ns.length,quota[k]-takeC);
-  got.push(...cs.slice(0,takeC),...ns.slice(0,takeN));left.push(...cs.slice(takeC),...ns.slice(takeN))});
+  /* 真題程式題以「讀程式選正確用法／判斷敘述」為主（約 95%），「手算輸出數值」只占極少數，所以數值輸出題限 10%（多練模式 30%） */
+  const cJ=order(cs.filter(q=>!isNumOut(q))),cN=order(cs.filter(isNumOut));
+  let nN=Math.min(cN.length,Math.round(takeC*(cm==='more'?.3:.1))),nJ=Math.min(cJ.length,takeC-nN);nN=Math.min(cN.length,takeC-nJ);
+  got.push(...cJ.slice(0,nJ),...cN.slice(0,nN),...ns.slice(0,takeN));left.push(...cJ.slice(nJ),...cN.slice(nN),...ns.slice(takeN))});
  Object.keys(groups).filter(k=>!keys.includes(k)).forEach(k=>left.push(...groups[k]));
  if(got.length<n)got.push(...order(left).slice(0,n-got.length));
  return got.map(q=>q.id);
